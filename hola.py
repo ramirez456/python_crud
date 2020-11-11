@@ -1,5 +1,5 @@
 import sys
-#clients = ['Max','Elef','Omar','Thalia']
+
 clients = [ 
     {
         'name': 'Max',
@@ -14,6 +14,7 @@ clients = [
         'position': 'Data Engineer',
     },
     ]
+
 
 def add_client(client):
     global clients
@@ -35,8 +36,6 @@ def update_client(client_id, updated_client):
 
 def search_client(client_name):
     global clients
-
-    #client_list = clients.split(',')
     for client in clients:
         if client != client_name:
             continue
@@ -48,14 +47,12 @@ def delete_client(client_name):
     global clients
     
     if client_name in clients:
-        #clients = clients.replace(client_name+',','')
         clients.remove(client_name)
     else:
         print("The client not exist!!")
 
 
 def list_client():
-    #global clients
     for idx, client in enumerate(clients):
         print('{uid} | {name} | {company} | {email} | {position}'
         .format(uid=idx, 
@@ -88,6 +85,7 @@ def _get_client_name():
         sys.exit()
     return client_name
 
+
 def _get_client_field(field_name):
     field = None
 
@@ -97,22 +95,21 @@ def _get_client_field(field_name):
     return field
 
 
-
-
 def _print_welcome():
     mesaje ="""
         WELCOME TO PLATZI VENTAS
         '*'*50
         What would you lke to do today?
         [C] Create Client
-        [L] List Client
-        [D] Delete Client
+        [R] List Client
         [U] Update Client
+        [D] Delete Client
         [S] Search Client
         [E] Salir
         : """
     option  = input(mesaje)
     return option
+
 
 if __name__ == "__main__":
     
@@ -121,7 +118,7 @@ if __name__ == "__main__":
     while active:
 
         option = _print_welcome()
-        if option == 'L' or option == 'l':
+        if option == 'R' or option == 'r':
             list_client()
 
         elif option == 'C' or option == 'c':
@@ -147,7 +144,7 @@ if __name__ == "__main__":
             updated_client = _get_client_from_user()
             update_client(client_id, updated_client)
             list_client()
-            
+
         elif option == 'D' or option == 'd':
             name = _get_client_name()
             delete_client(name)
